@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Bulma setup -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <nav class="navbar is-link">
+            <div class="navbar-brand">
+                <a class="navbar-item is-size-4" href="{% url 'index' %}">
+                    Plom_authentication
+                </a>
+            </div>
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'manage' %}">
+                    Manage
+                </a>
+                <a class="navbar-item" href="{% url 'scan' %}">
+                    Scan
+                </a>
+                <a class="navbar-item" href="{% url 'mark' %}">
+                    Mark
+                </a>
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item" href="{% url 'login' %}">
+                    Log in
+                </a>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="section">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>         
+    </body>
+</html>

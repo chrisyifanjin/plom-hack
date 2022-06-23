@@ -73,7 +73,7 @@ class GenerateLinkView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
 
         token = token_urlsafe(nbytes=32)
-        link = generate_link(token, 60, get_current_site(self.request))
+        link = self.generate_link(token, 60, get_current_site(self.request))
 
         context['guest_link'] = link
         return context
@@ -129,14 +129,3 @@ def pdf_convert(request, pk):
     except services.ExamBuildException:
         services.delete_uploaded_pdf(pdf)
         return HttpResponse("Error when building mock exam PDF", status=500)
-
-
-def generate_link(request):
-    inviter = request.user.username
-    token = token_urlsafe(nbytes=32)
-    link = str(get_current_site(request)) + reverse('guest_upload', args=(token,))
-    return HttpResponse(link)
-
-
-def guest_upload(request, token):
-    return HttpResponse('Welcome, Guest!')

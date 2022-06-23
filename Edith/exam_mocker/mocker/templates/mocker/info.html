@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Exam mocker{% endblock %}
+
+{% block content %}
+<h1>Plom exam mocker</h1>
+<p>Should include:</p>
+<ul>
+    <li>PDF upload page</li>
+    <li>A way to validate an uploaded file</li>
+    <ul>
+        <li>Is the right type? (PDF)</li>
+        <li>Is it under a certain size? Let's say... 10MB</li>
+        <li>Filename length limit</li>
+        <li>Find a way to verify if it's a real PDF</li>
+        <li>Create a new filename for database/server use</li>
+        <li>I.e. <a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html">follow this</a></li>
+    </ul>
+    <li>If this is a tool for potential users, don't worry about users/permissions/etc for the moment</li>
+    <ul>
+        <li>Let's make users sign up first before uploading files</li>
+        <li>Other users shouldn't see the files, though</li>
+    </ul>
+    <li>PDF mocking:</li>
+    <ul>
+        <li>Add fake QR codes to the corners</li>
+        <li>Add the grey staple corner</li>
+        <li>Add a top box with a "DRAFT" label</li>
+    </ul>
+    <li>Let the users download the mocked-up exam.</li>
+    <li>Delete the original / edited files once the user has closed the page?</li>
+</ul>
+{% endblock %}

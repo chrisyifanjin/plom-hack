@@ -1,0 +1,32 @@
+{% extends "base.html"%}
+
+{% block title %}Exam mocker | Login{% endblock %}
+
+{% block content %}
+<h1>Log in</h1>
+
+<div class="column is-one-half">
+    <div class="box">
+        <form method="post">
+            {% csrf_token %}
+            <div class="block">
+                {% for error in form.non_field_errors %}
+                <p class="has-text-danger" >{{ error }}</p>
+                {% endfor %}
+            </div>
+            
+            <div class="block">
+                {% for field in form %}
+                <div class="block">
+                    {{ field.label }}
+                    {{ field }}
+                </div>
+                {% endfor %}
+            </div>
+            <input type="submit" value="Log in" class="button">
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

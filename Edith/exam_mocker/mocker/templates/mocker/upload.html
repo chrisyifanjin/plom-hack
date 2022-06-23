@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Exam mocker | Upload file{% endblock %}
+
+{% block content %}
+<h2 class="Title">Upload file</h2>
+<p>Upload an exam PDF to be stamped with dummy QR codes and watermarks. Use it to test if the Plom-generated stamps will fit on an exam file.</p>
+<div class="column is-one-half">
+    <div class="box">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="block">
+                {% for error in form.non_field_errors %}
+                <p class="has-text-danger" >{{ error }}</p>
+                {% endfor %}
+            </div>
+            
+            <div class="block">
+                {% for field in form %}
+                <div class="block">
+                    {{ field.label }}
+                    {{ field }}
+                </div>
+                {% endfor %}
+            </div>
+            <input type="submit" value="Mock" class="button">
+        </form>
+    </div>
+</div>
+{% endblock %}

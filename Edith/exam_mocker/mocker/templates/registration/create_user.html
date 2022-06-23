@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Exam mocker | Sign up{% endblock %}
+
+{% block nav_start %}
+<a class="navbar-item" href="{% url 'login' %}">
+    Log in
+</a>
+{% endblock %}
+
+{% block content%}
+<h1>Sign up</h1>
+
+<div class="column is-one-half">
+    <div class="box">
+        <form method="post">
+            {% csrf_token %}
+            <div class="block">
+                {% for error in form.non_field_errors %}
+                <p class="has-text-danger" >{{ error }}</p>
+                {% endfor %}
+            </div>
+            
+            <div class="block">
+                {% for field in form %}
+                <div class="block">
+                    {{ field.label }}
+                    {{ field }}
+                </div>
+                {% endfor %}
+            </div>
+            <input type="submit" value="Create account" class="button">
+        </form>
+    </div>
+</div>
+{% endblock %}

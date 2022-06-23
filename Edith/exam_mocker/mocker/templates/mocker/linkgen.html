@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Exam mocker | Generate link{% endblock %}
+
+{% block content %}
+<h1 class="title">Generate demo link</h1>
+<div class="column is-one-half">
+    <div class="box">
+        <p>One-time guest upload link:</p>
+        <div class="column is-two-thirds">
+            <textarea class="textarea has-fixed-size" readonly>{{ guest_link }}</textarea>            
+        </div>
+
+        <!-- Begin alpine -->
+        <div x-data="{display_success: false}">
+            <div x-data="{guest_link: '{{ guest_link }}'}" @click="navigator.clipboard.writeText(guest_link)">
+                <button class="button" @click="display_success = true" @click.outside="display_success = false">
+                    Copy to clipboard
+                </button>
+                <span 
+                    x-show="display_success" 
+                    x-text="'Copied!'" 
+                    x-transition:enter.duration.100ms
+                    x-transition:leave.duration.10ms
+                >
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

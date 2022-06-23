@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} Exam mocker | Convert {% endblock %}
+
+{% block content %}
+<h1 class="title">
+    Your PDF is being converted.
+</h1>
+<p class="subtitle">Please stay on this page until your download is complete.</p>
+<a href="{% url 'upload' %}">Upload another PDF</a>
+{% endblock %}

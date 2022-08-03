@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Train model</title>
+
+        <!-- HTMX -->
+        <script src="https://unpkg.com/htmx.org@1.8.0" integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <h1>Train a model!</h1>
+
+        <form method="post" action="{% url 'train' %}">
+            {% csrf_token %}
+
+            <input type="submit" value="Train">
+
+            {{ results |safe }}
+        </form>
+    </body>
+</html>

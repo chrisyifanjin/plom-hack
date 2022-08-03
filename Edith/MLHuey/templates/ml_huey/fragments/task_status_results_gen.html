@@ -1,0 +1,9 @@
+{% extends 'ml_huey/fragments/task_status_results_base.html' %}
+
+{% block retry_form %}
+<form action="{% url 'retry_guess_task' task.uuid %}" method="post">
+    {% csrf_token %}
+    {{ retry_form.as_p }}
+    <input type="submit" value="Retry">
+</form>
+{% endblock %}

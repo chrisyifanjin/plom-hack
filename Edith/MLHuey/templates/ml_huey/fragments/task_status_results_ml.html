@@ -1,0 +1,17 @@
+<div id="task_status_results">
+    <p>
+        Status: <span id="task_status">{{ task.status }}</span>
+        <button 
+            hx-get="{% url 'refresh_ml' %}" 
+            hx-target="#task_status_results"
+        >
+            Refresh status
+        </button>
+    </p>
+    {% if task.status == 'complete' %}
+    <p>Train accuracy: {{ endpt.train_acc |floatformat:2 }}</p>
+    {% elif task.status == 'error' %}
+    <p style="color: red;">Error: {{ task.message }}</p>
+    {% endif %}
+    <a href="{% url 'index' %}">Return to homepage</a>
+</div>

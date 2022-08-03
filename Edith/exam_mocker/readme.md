@@ -1,0 +1,2 @@
+# Exam mocker app
+Code for generating sample Plom exams: the user uploads a PDF file, which gets stamped with fake QR codes, staple corners, and header boxes. Authenticated users can generate guest links which let unauthenticated users upload tests for a limited amount of time.

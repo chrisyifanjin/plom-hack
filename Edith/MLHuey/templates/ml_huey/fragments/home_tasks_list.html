@@ -1,0 +1,17 @@
+{% if tasks %}
+<ol>
+    {% for t in tasks %}
+        {% if t.status == 'error' %}
+        <li><a href="{% url 'view_task' t.uuid %}" style="color: red;">{{ t.function }} (error)</a></li>
+        {% else %}
+        <li><a href="{% url 'view_task' t.uuid %}">{{ t.function }} ({{ t.status }})</a></li>
+        {% endif %}
+    {% endfor %}
+</ol>
+<div>
+    <button hx-post="{% url 'clear_tasks' %}" hx-target="#task_list">Clear tasks</button>
+    <p id="clear_results"></p>
+</div>
+{% else %}
+<p>No tasks yet!</p>
+{% endif %}

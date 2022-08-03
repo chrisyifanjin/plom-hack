@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Huey tasks</title>
+
+        <!-- HTMX -->
+        <script src="https://unpkg.com/htmx.org@1.8.0" integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <p>{{ description }}</p>
+        {{ args |safe }}
+        <p>Date created: {{ task.date_created }} UTC</p>
+        {{ results |safe }}
+    </body>
+</html>

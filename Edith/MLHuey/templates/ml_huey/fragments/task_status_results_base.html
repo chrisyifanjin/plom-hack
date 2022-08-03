@@ -1,0 +1,19 @@
+<div id="task_status_results">
+    <p>
+        Status: <span id="task_status">{{ task.status }}</span>
+        <button 
+            hx-get="{% url 'refresh' task.uuid %}" 
+            hx-target="#task_status_results"
+        >
+            Refresh status
+        </button>
+    </p>
+    {% if task.status == 'complete' %}
+    <p>Result: {{ task.function.result }}</p>
+    {% elif task.status == 'error' %}
+    <p style="color: red;">Error: {{ task.message }}</p>
+    {% block retry_form %}
+    {% endblock %}
+    {% endif %}
+    <a href="{% url 'index' %}">Return to homepage</a>
+</div>

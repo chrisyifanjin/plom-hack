@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Django huey experiments</title>
+
+        <!-- HTMX -->
+        <script src="https://unpkg.com/htmx.org@1.8.0" integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc" crossorigin="anonymous"></script>
+    </head>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        <h1>Tasks homepage</h1>
+        <p>Logged in as {{ user.username }} <a href="{% url 'logout' %}">(logout)</a></p>
+        <form method="post" action="{% url 'create_add_task' %}">
+            {% csrf_token %}
+            {{ add_form }}
+            <input type="submit" value="Create task">
+        </form>
+        <form method="post" action="{% url 'create_guess_task' %}">
+            {% csrf_token %}
+            {{ gen_form }}
+            <input type="submit" value="Create task">
+        </form>
+        <p>
+            <a href="{% url 'train' %}">Or train a machine learning model!</a>
+        </p>   
+        <div>
+            <h2>Current tasks:</h2>
+            <button hx-get="{% url 'get_tasks' %}" hx-target="#task_list">Refresh</button>
+            <div id="task_list">
+                {{ task_list |safe }}
+            </div>
+        </div>
+    </body>
+</html>

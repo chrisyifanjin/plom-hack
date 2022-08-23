@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Huey PDF Builder Demo</title>
+
+        <!-- HTMX -->
+        <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+    </head>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        <h2>Main Page</h2>
+        <p>Logged in as {{ user.username }} <a href="{% url 'logout' %}">(Sign out)</a></p>
+
+        <h3>Build PDFs</h3>
+
+        <form hx-post="{% url 'create_tasks' %}" hx-target="#pdf_tasks" hx-indicator="#create_ind">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <p>
+                <input type="submit" value="Submit">
+                <span id="create_ind" class="htmx-indicator">...</span>
+            </p>
+        </form>
+
+        <h4>PDF tasks:</h4>
+        <p hx-get="{% url 'refresh' %}" hx-trigger="every 2s" hx-target="#pdf_tasks" hx-indicator="#refresh_ind">
+            <button hx-get="{% url 'refresh' %}" hx-target="#pdf_tasks" hx-indicator="#refresh_ind">Refresh</button>
+            <span id="refresh_ind" class="htmx-indicator">...</span>
+            <button hx-post="{% url 'start_all' %}" hx-target="#pdf_tasks" hx-indicator="#startall_ind">Start all</button>
+            <span id="startall_ind" class="htmx-indicator">...</span>
+            <button hx-post="{% url 'retry_all' %}" hx-target="#pdf_tasks" hx-indicator="#retryall_ind">Retry all</button>
+            <span id="retryall_ind" class="htmx-indicator">...</span>
+            <button hx-post="{% url 'clear_everything' %}" hx-target="#pdf_tasks" hx-indicator="#clear_ind">Clear all</button>
+            <span id="clear_ind" class="htmx-indicator">...</span>
+        </p>
+        <div id="pdf_tasks">
+            {{ fragment |safe}}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<div>
+    <ol>
+        {% for t in tasks %}
+        {% if t.huey_process %}
+            {% if t.huey_process.status == 'complete' %}
+            <li><a href="{% url 'get_pdf' t.task_id %}" target="_blank">{{ t }}</a></li>
+            {% elif t.huey_process.status == 'error' %}
+            <li style="color: red;">
+                {{ t }} {{ t.huey_process.message }}
+                <button hx-post="{% url 'retry_task' t.task_id %}" hx-target="#pdf_tasks">Retry</button>
+            </li>
+            {% else %}
+            <li>{{ t }} ({{ t.huey_process.status }})</li>
+        {% endif %}
+        {% else %}
+        <li>
+            {{ t }} 
+            <button hx-post="{% url 'start_task' t.task_id %}" hx-target="#pdf_tasks">Start</button> 
+            <button hx-post="{% url 'cancel_task' t.task_id %}" hx-target="#pdf_tasks">Cancel</button>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ol>
+</div>

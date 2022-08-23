@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Huey PDF Builder Demo</title>
+    </head>
+    <body>
+        <h2>Log in</h2>
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" value="Log in">
+        </form>
+    </body>
+</html>
